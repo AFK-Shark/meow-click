@@ -39,10 +39,47 @@ public class EnemyClick : MonoBehaviour
     public GameObject Unit1_Image;
     public GameObject Unit2_Image;
 
+    //Оружейная
+
+    public int[] WeaponBowCost;
+    public Text[] WeaponBowText;
+
+    public int[] WeaponZanbatoCost;
+    public Text[] WeaponZanbatoText;
+
+    public int[] WeaponSwordCost;
+    public Text[] WeaponSwordText;
+
+    //HP bar
+    public Slider enemyHealthSlider;
+    public int power = 1;
+    private float maxEnemyHealth = 100;
+    private float currentEnemyHealth;
+
+    void Start()
+    {
+        currentEnemyHealth = maxEnemyHealth; // Устанавливаем текущее здоровье "Enemy" равным максимальному
+        enemyHealthSlider.maxValue = maxEnemyHealth;
+        enemyHealthSlider.value = currentEnemyHealth;
+    }
+
     public void ButtonClick()
     {
         Score += ClickScore;
         total_score++;
+
+        //Уменьшение и обновление здоровья врага
+
+        currentEnemyHealth -= power; // Уменьшаем здоровье "Enemy" на значение power
+        enemyHealthSlider.value = currentEnemyHealth; // Обновляем значение Slider
+
+        if (currentEnemyHealth <= 0)
+        {
+            maxEnemyHealth = maxEnemyHealth + 100;
+            currentEnemyHealth = maxEnemyHealth * 2; // Восстанавливаем здоровье "Enemy" и увеличиваем в 2 раза
+            enemyHealthSlider.maxValue = maxEnemyHealth * 2;
+            enemyHealthSlider.value = currentEnemyHealth;
+        }
     }
 
     //Обновление Счета
@@ -115,6 +152,38 @@ public class EnemyClick : MonoBehaviour
             ClickScoreAUTO += 1;
             CostIntAUTO[0] += CostIntAUTO[0] / 2;
             CostTextAUTO[0].text = CostIntAUTO[0] + "$";
+        }
+    }
+
+    //Покупка оружия
+
+    public void ByBow()
+    {
+        if (Score >= WeaponBowCost[0])
+        {
+            Score -= WeaponBowCost[0];
+            power += 10;
+            WeaponBowText[0].text = "Sale";
+        }
+    }
+
+    public void ByZanbato()
+    {
+        if (Score >= WeaponZanbatoCost[0])
+        {
+            Score -= WeaponZanbatoCost[0];
+            power += 50;
+            WeaponZanbatoText[0].text = "Sale";
+        }
+    }
+
+    public void BySword()
+    {
+        if (Score >= WeaponSwordCost[0])
+        {
+            Score -= WeaponSwordCost[0];
+            power += 100;
+            WeaponSwordText[0].text = "Sale";
         }
     }
 
