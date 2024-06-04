@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class EnemyClick : MonoBehaviour
 {
     [SerializeField] int Score; //Счет на данный момент
-    private int total_score; //Общий счет для достижений
 
     //Объекты для достижений
 
@@ -66,7 +65,6 @@ public class EnemyClick : MonoBehaviour
     public void ButtonClick()
     {
         Score += ClickScore;
-        total_score++;
 
         //Уменьшение и обновление здоровья врага
 
