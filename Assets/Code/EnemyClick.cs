@@ -51,7 +51,7 @@ public class EnemyClick : MonoBehaviour
 
     //HP bar
     public Slider enemyHealthSlider;
-    public int power = 1;
+    private int power = 1;
     private float maxEnemyHealth = 100;
     private float currentEnemyHealth;
 
@@ -130,7 +130,7 @@ public class EnemyClick : MonoBehaviour
 
     //Покупка и обновление статуса магазина
 
-    public void OnClickBuyLevel()
+    private void OnClickBuyLevel()
     {
         if (Score >= CostInt[0])
         {
@@ -141,7 +141,7 @@ public class EnemyClick : MonoBehaviour
         }
     }
 
-    public void ByAutoClick() 
+    private void ByAutoClick() 
     {
         if (Score >= CostIntAUTO[0])
         {
@@ -155,7 +155,7 @@ public class EnemyClick : MonoBehaviour
 
     //Покупка оружия
 
-    public void ByBow()
+    private void ByBow()
     {
         if (Score >= WeaponBowCost[0])
         {
@@ -165,7 +165,7 @@ public class EnemyClick : MonoBehaviour
         }
     }
 
-    public void ByZanbato()
+    private void ByZanbato()
     {
         if (Score >= WeaponZanbatoCost[0])
         {
@@ -175,7 +175,7 @@ public class EnemyClick : MonoBehaviour
         }
     }
 
-    public void BySword()
+    private void BySword()
     {
         if (Score >= WeaponSwordCost[0])
         {
